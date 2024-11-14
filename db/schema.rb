@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_12_202120) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_14_050258) do
+  create_table "about_us", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "abouts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -71,13 +85,26 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_12_202120) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contact_us", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password"
     t.string "street_address"
     t.string "city"
-    t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "postal_code"
@@ -110,7 +137,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_12_202120) do
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "static_pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

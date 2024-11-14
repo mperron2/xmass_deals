@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  get "static_pages/show"
+  resources :customers
+  resources :orders
+  resources :order_items
+  root to: "products#index"
+  get "support/:page", to: "support#show", as: :static_page
+
+  resources :products do
+    collection do
+      get "filter_by_category"
+    end
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

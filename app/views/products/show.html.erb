@@ -1,0 +1,26 @@
+<div class="columns m-6">
+  <div class="column is-one-half">
+    <div class="card">
+      <% if @product.image.attached? %>
+        <div class="card-image">
+          <figure class="image is-1by1">
+            <%= image_tag(@product.image, alt: "Product Image", class: "is-rounded") %>
+          </figure>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="column">
+    <p class="title is-3 mb-6">
+      <strong><%= @product.name %></strong>
+    </p>
+    <p class="subtitle is-6">
+      <strong>Price: <%= @product.price %>$</strong><br>
+      <strong>Category: <%= @product.category.name %></strong><br>
+      <strong>Description:<br><%= @product.description %></strong>
+    </p>
+    <div class="element">
+      <%= link_to 'Add to cart', product_path(@product), class: 'button is-info m-2' %>
+    </div>
+  </div>
+</div>

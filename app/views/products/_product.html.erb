@@ -1,0 +1,30 @@
+<div class="column is-one-fifth">
+  <div class="card">
+    <div class="element has-text-centered">
+      <div class="bubble">
+        <span class="tag is-warning m-3"><%= product.category.name %></span>
+      </div>
+    </div>
+    <%= link_to product_path(product), class: 'card-link' do %>
+      <% if product.image.attached? %>
+        <div class="card-image">
+          <figure class="image is-1by1">
+            <%= image_tag(product.image, alt: "Product Image", class: "is-rounded") %>
+          </figure>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="card-content has-text-centered">
+      <p class="title is-5 mb-1">
+        <%= product.name %>
+      </p>
+      <p class="subtitle is-6 m-3">
+        <strong><%= product.price %>$</strong>
+        <div class="element">
+          <%= link_to 'Add to cart', product_path(product), class: 'button is-info' %>
+        </div>
+      </p>
+    </div>
+  </div>
+</div>
