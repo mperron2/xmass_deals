@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "node_modules/@primer/css/dist/inde";
+
+ .hero {
+  background-image: url('<%= asset_path("christmasbackground.jpg") %>');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.navbar {
+  background-color: #d6a399;
+}
+
+.card {
+  background-color: #FFFFFF;
+}
+
+

@@ -2,3 +2,12 @@
 # yarn lockfile v1
 
 
+"@primer/css@^21.5.1":
+  version "21.5.1"
+  resolved "https://registry.yarnpkg.com/@primer/css/-/css-21.5.1.tgz#ba2bd8339485c6b283096de28955a130a4ee327c"
+  integrity sha512-/dw7P2eHbLEq77E6WVhVPud/HtyzAzlQgX6f8HQ/i0l1r5EZeh9r7/THgMUt0MgdSlJb7t+WT+V+zN8EDkU9mw==
+
+bulma@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-1.0.2.tgz#47395a660755c9566db3cf981fd4e3a2b637af19"
+  integrity sha512-D7GnDuF6seb6HkcnRMM9E739QpEY9chDzzeFrHMyEns/EXyDJuQ0XA0KxbBl/B2NTsKSoDomW61jFGFaAxhK5A==
