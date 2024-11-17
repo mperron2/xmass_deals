@@ -39,6 +39,12 @@ gem "cancancan"
 gem "draper"
 gem "pundit"
 
+gem "nokogiri" # For parsing HTML
+gem "httparty" # For making HTTP requests
+gem "capybara" # For interacting with websites dynamically
+gem "selenium-webdriver" # For handling JavaScript-heavy websites
+
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

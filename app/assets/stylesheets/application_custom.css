@@ -1,0 +1,49 @@
+.navbar-item {
+  color: black !important;
+}
+
+.card {
+  background-color: white;
+  flex: 1;
+}
+
+.fixed-size {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.element {
+  margin-bottom: 10px;
+}
+
+.title {
+  color: black !important;
+  flex-grow: 1;
+}
+
+strong {
+  color: black !important;
+}
+
+footer {
+  color: black !important;
+}
+
+.columns.is-vcentered {
+  display: flex;
+  align-items: center;
+}
+
+.field.is-inline-block {
+  display: inline-block;
+  margin-right: 10px; /* Adjust as needed */
+}
