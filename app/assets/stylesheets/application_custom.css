@@ -55,4 +55,18 @@ footer {
   margin-right: 10px; /* Adjust as needed */
 }
 
+.field .input,
+.field .select,
+.field .button {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.field .input::placeholder,
+.field .select::placeholder {
+  color: white;
+}
+
+
 
