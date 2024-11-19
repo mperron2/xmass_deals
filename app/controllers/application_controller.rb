@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+  before_action :initalize_session
+
+  private
+  def initalize_session
+    session[:cart] ||= [] # Will contain a array of product_ids
+  end
 end

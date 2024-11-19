@@ -1,13 +1,40 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-StaticPage.create(title: "About Us", content: "Your about us content here.")
-StaticPage.create(title: "Contact Us", content: "Your contact us content here.")
+Product.delete_all
+Category.delete_all
+# StaticPage.create(title: "About Us", content: "Your about us content here.")
+# StaticPage.create(title: "Contact Us", content: "Your contact us content here.")
+
+categories = [ 'Daugther', 'Son', 'Kids', 'Mom', 'Dad', 'Couple', 'Grandma', 'Grandpa', 'Friend', 'Family', 'Pet' ]
+
+categories.each do |category_name|
+  Category.find_or_create_by!(name: category_name)
+end
+
+categories.each do |category_name|
+  puts "Seeding products for category: #{category_name}"
+
+  category = Category.find_by!(name: category_name)
+
+  products = AliexpressScraper.scrape_category(category_name.downcase, 9)
+
+  products.each do |product_data|
+    product = Product.create!(
+      name: product_data[:name],
+      description: product_data[:description],
+      price: product_data[:price],
+      category: category
+    )
+
+    if product_data[:image]
+      image_url = product_data[:image]
+      io = URI.open(image_url)
+      io.class.class_eval { include ActiveStorage::Blob::Analyzable }
+      product.image.attach(io: io, filename: "#{product.name}.jpg", content_type: "image/jpeg")
+    end
+  end
+end
+
+puts "Seeding completed!"
+
+
 
 # AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

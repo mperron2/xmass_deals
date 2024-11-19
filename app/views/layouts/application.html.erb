@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "XMass Deals" %></title>
+    <title class="nav_title"><%= content_for(:title) || "XMass Deals" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -20,11 +20,11 @@
 
   <body>
     <div class='hero is-fullheight'>
-      <div class="has-background-primary">
+      <div>
         <header class="navbar container">
           <div class="navbar-brand">
             <a class="navbar-item" href="/">
-              <h1 class="is-size-4 has-text-weight-bold has-text-black">
+              <h1 class="is-size-4 has-text-weight-bold has-text-white">
                 XMass Deals
               </h1>
             </a>

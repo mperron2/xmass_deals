@@ -9,7 +9,7 @@
   </div>
 
   <div class="column">
-    <%= form_with url: filter_by_category_products_path, method: :get, local: true, id: "category-form" do %>
+    <%= form_with url: filter_by_category_products_path, method: :get, local: false, id: "category-form" do %>
       <div class="field is-inline-block m-1">
         <%= label_tag :category_id, "Category:", class: "label" %>
         <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), include_blank: "All", class: "select" %>

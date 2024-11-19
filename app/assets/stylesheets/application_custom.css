@@ -1,5 +1,12 @@
+body {
+  background-color: green;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .navbar-item {
-  color: black !important;
+  color: white;
 }
 
 .card {
@@ -26,7 +33,7 @@
 }
 
 .title {
-  color: black !important;
+  color: black;
   flex-grow: 1;
 }
 
@@ -47,3 +54,5 @@ footer {
   display: inline-block;
   margin-right: 10px; /* Adjust as needed */
 }
+
+
