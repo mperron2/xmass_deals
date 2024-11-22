@@ -32,6 +32,7 @@
               </h1>
             </a>
           </div>
+
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
               <a class="navbar-item" href="/support/about">
@@ -40,24 +41,33 @@
               <a class="navbar-item" href="/support/contact">
                 Contact
               </a>
-              <a class="navbar-item" href="/cart">
-                 <%= link_to image_tag("traineau.jpg", width: 60), root_path %>
-                 <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %>
-                <ul>
-                  <li>
-                    Cart
-                    <% if cart.present? %>
-                      <sup><%= cart.size %></sup>
-                      <ul>
-                        <% cart.each do |product| %>
-                          <li>
-                            <%= product.name %> <%= link_to '❌', cart_path(product), method: :delete %>
-                          </li>
-                        <% end %>
-                      </ul>
-                    <% end %>
-                  </li>
-                </ul>
+            </div>
+            <div class="navbar-end">
+              <div class="navbar-item has-dropdown is-hoverable">
+                <%= link_to image_tag("traineau.jpg", style: "width: 50px; height: 50px; object-fit: cover;"), "#", class: "navbar-link" %>
+                <div class="navbar-dropdown is-right">
+                  <ul class="ml-3">
+                    <li>
+                      <% if cart.present? %>
+                          <% cart.each do |product| %>
+                            <li style="width: 300px;">
+                              <%= product.name %>
+                              <%= link_to '❌', cart_path(product), method: :delete %>
+                            </li>
+                          <% end %>
+                      <% else %>
+                        <p>Your cart is empty.</p>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <a class="navbar-item">
+                <% if customer_signed_in? %>
+                  <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: "button is-danger is-light" %>
+                <% else %>
+                  <%= link_to 'Sign In', new_customer_session_path, class: "button is-primary is-light" %>
+                <% end %>
               </a>
             </div>
           </div>
