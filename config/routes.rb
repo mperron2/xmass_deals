@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :customers
-  get "static_pages/show"
   resources :customers
   resources :orders
   resources :order_items

@@ -1,7 +1,7 @@
 Product.delete_all
 Category.delete_all
-# StaticPage.create(title: "About Us", content: "Your about us content here.")
-# StaticPage.create(title: "Contact Us", content: "Your contact us content here.")
+About.create(title: "About Us", content: "Your about us content here.")
+Contact.create(title: "Contact Us", content: "Your contact us content here.")
 
 categories = [ 'Daugther', 'Son', 'Kids', 'Mom', 'Dad', 'Couple', 'Grandma', 'Grandpa', 'Friend', 'Family', 'Pet' ]
 
@@ -35,6 +35,4 @@ end
 
 puts "Seeding completed!"
 
-
-
-# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
