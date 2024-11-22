@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
+  validates :name, presence: true
   has_many :products
 
   def self.ransackable_associations(auth_object = nil)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_14_050258) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_22_035445) do
   create_table "about_us", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -101,13 +101,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_050258) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.string "password"
     t.string "street_address"
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "postal_code"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -132,7 +137,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_050258) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.integer "price"
+    t.decimal "price", precision: 10, scale: 2
     t.integer "in_stock"
     t.integer "category_id", null: false
     t.datetime "created_at", null: false

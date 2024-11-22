@@ -39,6 +39,9 @@ gem "cancancan"
 gem "draper"
 gem "pundit"
 
+gem "nokogiri" # For parsing HTML
+gem "httparty" # For making HTTP requests
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -56,6 +59,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "spring"
+  gem "spring-watcher-listen"
 
   # Highlight the fine-grained location where an error occurred [https://github.com/ruby/error_highlight]
   gem "error_highlight", ">= 0.4.0", platforms: [ :ruby ]

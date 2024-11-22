@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get "static_pages/show"
+  devise_for :customers
   resources :customers
   resources :orders
   resources :order_items
+  resources :cart, only: %i[create destroy]
   root to: "products#index"
   get "support/:page", to: "support#show", as: :static_page
 

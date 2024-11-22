@@ -2,3 +2,37 @@
 # yarn lockfile v1
 
 
+"@prettier/sync@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.npmjs.org/@prettier/sync/-/sync-0.5.2.tgz"
+  integrity sha512-Yb569su456XNx5BsH/Vyem7xD6g/y9iLmLUzRKM1a/dhU/D7HqqvkAG72znulXlMXztbV0iiu9O5AL8K98TzZQ==
+  dependencies:
+    make-synchronized "^0.2.8"
+
+"@primer/css@^21.5.1":
+  version "21.5.1"
+  resolved "https://registry.npmjs.org/@primer/css/-/css-21.5.1.tgz"
+  integrity sha512-/dw7P2eHbLEq77E6WVhVPud/HtyzAzlQgX6f8HQ/i0l1r5EZeh9r7/THgMUt0MgdSlJb7t+WT+V+zN8EDkU9mw==
+
+"@primer/primitives@9.x || 10.x":
+  version "9.1.2"
+  resolved "https://registry.npmjs.org/@primer/primitives/-/primitives-9.1.2.tgz"
+  integrity sha512-KecRJpUdIf14J3gVpoyMMJeQD6Sh5kcHk93N5bYch4XGB0GOZP3ypxz+NByMjr/2HHPsRfCCO5EEgNjmeWYUGQ==
+  dependencies:
+    "@prettier/sync" "^0.5.2"
+    prettier "3.3"
+
+bulma@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/bulma/-/bulma-1.0.2.tgz"
+  integrity sha512-D7GnDuF6seb6HkcnRMM9E739QpEY9chDzzeFrHMyEns/EXyDJuQ0XA0KxbBl/B2NTsKSoDomW61jFGFaAxhK5A==
+
+make-synchronized@^0.2.8:
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/make-synchronized/-/make-synchronized-0.2.9.tgz"
+  integrity sha512-4wczOs8SLuEdpEvp3vGo83wh8rjJ78UsIk7DIX5fxdfmfMJGog4bQzxfvOwq7Q3yCHLC4jp1urPHIxRS/A93gA==
+
+prettier@*, prettier@3.3:
+  version "3.3.3"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-3.3.3.tgz"
+  integrity sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "XMass Deals" %></title>
+    <title class="nav_title"><%= content_for(:title) || "XMass Deals" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -13,17 +13,21 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <%= stylesheet_link_tag "bulma", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application_custom", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="/assets/rails-ujs.js"></script>
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <div class='hero is-fullheight'>
-      <div class="has-background-primary">
+      <div>
         <header class="navbar container">
           <div class="navbar-brand">
             <a class="navbar-item" href="/">
-              <h1 class="is-size-4 has-text-weight-bold has-text-black">
+              <h1 class="is-size-4 has-text-weight-bold has-text-white">
                 XMass Deals
               </h1>
             </a>
@@ -35,6 +39,25 @@
               </a>
               <a class="navbar-item" href="/support/contact">
                 Contact
+              </a>
+              <a class="navbar-item" href="/cart">
+                 <%= link_to image_tag("traineau.jpg", width: 60), root_path %>
+                 <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %>
+                <ul>
+                  <li>
+                    Cart
+                    <% if cart.present? %>
+                      <sup><%= cart.size %></sup>
+                      <ul>
+                        <% cart.each do |product| %>
+                          <li>
+                            <%= product.name %> <%= link_to '❌', cart_path(product), method: :delete %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                  </li>
+                </ul>
               </a>
             </div>
           </div>
