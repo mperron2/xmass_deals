@@ -21,10 +21,17 @@
       </p>
       <p class="subtitle is-6 m-3">
         <strong><%= product.price %>$</strong>
-        <div class="element">
-          <%= link_to 'Add to cart', product_path(product), class: 'button is-info' %>
-        </div>
       </p>
+      <% if cart.include?(product) %>
+        <%= button_to cart_path(product), class: "button red-wine-button", method: :delete do %>
+          Remove from cart
+        <% end %>
+      <% else %>
+        <%= form_with url: cart_index_path do %>
+          <%= hidden_field_tag(:id, product.id) %>
+          <%= button_tag "Add to cart", class: "button green-button" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

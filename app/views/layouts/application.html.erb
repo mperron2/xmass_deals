@@ -19,6 +19,8 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <div class='hero is-fullheight'>
       <div>
         <header class="navbar container">
@@ -36,6 +38,24 @@
               </a>
               <a class="navbar-item" href="/support/contact">
                 Contact
+              </a>
+              <a class="navbar-item" href="/cart">
+                 <%= link_to image_tag("traineau.jpg", width: 60), root_path %>
+                <ul>
+                  <li>
+                    Cart
+                    <% if cart.present? %>
+                      <sup><%= cart.size %></sup>
+                      <ul>
+                        <% cart.each do |product| %>
+                          <li>
+                            <%= product.name %> <%= link_to '❌', cart_path(product), method: :delete %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                  </li>
+                </ul>
               </a>
             </div>
           </div>

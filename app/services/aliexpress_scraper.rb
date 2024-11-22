@@ -5,7 +5,7 @@ require "httparty"
 class AliexpressScraper
   BASE_URL = "https://www.aliexpress.com/w/wholesale-"
 
-  def self.scrape_category(category, items_count = 40)
+  def self.scrape_category(category, items_count = 9)
     url = "#{BASE_URL}#{category}.html"
     response = HTTParty.get(url, headers: { "User-Agent" => "Mozilla/5.0" })
 

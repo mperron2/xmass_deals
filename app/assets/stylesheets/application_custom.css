@@ -68,5 +68,34 @@ footer {
   color: white;
 }
 
+.red-wine-button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.red-wine-button:hover {
+  background-color: #A52A2A;
+}
+
+.green-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.green-button:hover {
+  background-color: #69a628;
+}
+
+
 
 
