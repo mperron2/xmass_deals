@@ -47,26 +47,34 @@
                 <%= link_to image_tag("traineau.jpg", style: "width: 50px; height: 50px; object-fit: cover;"), "#", class: "navbar-link" %>
                 <div class="navbar-dropdown is-right">
                   <ul class="ml-3">
-                    <li>
-                      <% if cart.present? %>
-                          <% cart.each do |product| %>
-                            <li style="width: 300px;">
-                              <%= product.name %>
-                              <%= link_to '❌', cart_path(product), method: :delete %>
-                            </li>
-                          <% end %>
-                      <% else %>
-                        <p>Your cart is empty.</p>
+                    <% if cart.present? %>
+                      <% cart.each do |entry| %>
+                        <li style="width: 300px;">
+                          <%= entry[:product].name %>
+                          <div class="field has-addons">
+                            <div class="control">
+                              <%= form_with url: update_quantity_cart_path(entry[:product]), method: :patch, local: true do |form| %>
+                                <%= form.number_field :quantity, value: entry[:quantity], min: 1, class: "input is-small", style: "width: 60px;" %>
+                                <%= form.submit "Update", class: "button is-small is-info" %>
+                              <% end %>
+                            </div>
+                            <div class="control">
+                              <%= link_to '❌', cart_path(entry[:product]), method: :delete, class: "button is-small is-danger" %>
+                            </div>
+                          </div>
+                        </li>
                       <% end %>
-                    </li>
+                    <% else %>
+                      <p>Your cart is empty.</p>
+                    <% end %>
                   </ul>
                 </div>
               </div>
               <a class="navbar-item">
                 <% if customer_signed_in? %>
-                  <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: "button is-danger is-light" %>
+                  <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: "button is-danger is-light m-3" %>
                 <% else %>
-                  <%= link_to 'Sign In', new_customer_session_path, class: "button is-primary is-light" %>
+                  <%= link_to 'Sign In', new_customer_session_path, class: "button is-primary is-light m-3" %>
                 <% end %>
               </a>
             </div>
