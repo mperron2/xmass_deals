@@ -23,6 +23,14 @@ class CartController < ApplicationController
     redirect_to request.referer || root_path
   end
 
+  def cart
+    session[:cart]&.map do |product_id, quantity|
+      product = Product.find_by(id: product_id)
+      next unless product
+      { product: product, quantity: quantity }
+    end.compact || []
+  end
+
   private
 
   def get_product
