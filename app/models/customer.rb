@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :orders
-  validates :name, :street_address, :city, presence: true
+  validates :name, :street_address, :city, :province, presence: true
   validates :postal_code, format: { with: /\A[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d\z/, message: "must be in the format A1A 1A1" }, allow_blank: false
 
   def self.ransackable_associations(auth_object = nil)

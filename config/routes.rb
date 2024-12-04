@@ -4,16 +4,16 @@ Rails.application.routes.draw do
   resources :orders
   resources :order_items
 
-  # Cart routes
   resources :cart, only: [ :create, :destroy ] do
     patch :update_quantity, on: :member
   end
 
-  # Checkout routes
   resources :checkout, only: [ :index ] do
     patch "update_quantity/:id", to: "checkout#update_quantity", as: "update_quantity"
-    get "confirm", to: "checkout#confirm", as: "confirmation"
+    get "confirm", on: :collection
   end
+
+  get "confirm", to: "checkout#confirm", as: "confirm"
   get "checkout", to: "checkout#index", as: "checkout"
 
   # Root path

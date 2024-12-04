@@ -1,44 +1,50 @@
 <div class="hero is-fullheight is-flex is-align-items-center is-justify-content-center">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title is-3 has-text-centered">Checkout</h1>
+      <div class="card">
+        <div class="card-content">
+          <h1 class="title is-3 has-text-centered">Checkout</h1>
 
-      <% if @cart_items.present? %>
-        <ul class="list is-hoverable">
-          <% @cart_items.each do |entry| %>
-            <li class="list-item">
-              <div class="columns is-vcentered">
-                <div class="column is-7">
-                  <strong><%= entry[:product].name %></strong>
-                </div>
-                <div class="column is-3">
-                  <%= form_with url: update_quantity_cart_path(entry[:product]), method: :patch, local: true do |form| %>
-                    <div class="field has-addons">
-                      <div class="control">
-                        <%= form.number_field :quantity, value: entry[:quantity], min: 1, class: "input is-small", style: "width: 80px;" %>
-                      </div>
-                      <div class="control">
-                        <%= form.submit "Update", class: "button is-small is-info" %>
-                      </div>
+          <% if @cart_items.present? %>
+            <ul class="list is-hoverable">
+              <% @cart_items.each do |entry| %>
+                <li class="list-item">
+                  <div class="columns is-vcentered">
+                    <div class="column is-5">
+                      <strong><%= entry[:product].name %></strong>
                     </div>
-                  <% end %>
-                </div>
-                <div class="column is-2 has-text-right ml-6">
-                  <%= link_to '❌', cart_path(entry[:product]), method: :delete, class: "button is-small is-danger" %>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
+                    <div class="column is-3">
+                      <%= form_with url: update_quantity_cart_path(entry[:product]), method: :patch, local: true do |form| %>
+                        <div class="field has-addons">
+                          <div class="control">
+                            <%= form.number_field :quantity, value: entry[:quantity], min: 1, class: "input is-small", style: "width: 80px;" %>
+                          </div>
+                          <div class="control">
+                            <%= form.submit "Update", class: "button is-small is-info" %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="column is-2 has-text-right">
+                      <%= number_to_currency(entry[:product].price * entry[:quantity]) %>
+                    </div>
+                    <div class="column is-1 has-text-right">
+                      <%= link_to '❌', cart_path(entry[:product]), method: :delete, class: "button is-small is-danger" %>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
 
-        <div class="has-text-centered mt-6">
-          <%= form_with url: "#", method: :get, local: true do |form| %>
-            <%= form.submit "Confirm Order", class: "button is-primary" %>
+            <div class="has-text-centered mt-6">
+              <h2 class="title is-4">Total: <%= number_to_currency(@total_price) %></h2>
+              <%= link_to 'Confirm Order', confirm_checkout_index_path, class: 'button green-button' %>
+            </div>
+          <% else %>
+            <p class="has-text-centered">Your cart is empty.</p>
           <% end %>
         </div>
-      <% else %>
-        <p class="has-text-centered">Your cart is empty.</p>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
