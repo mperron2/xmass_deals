@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :customers
   resources :orders
   resources :order_items
-  resources :cart, only: %i[create destroy]
+  resources :cart, only: [ :create, :destroy ] do
+    patch :update_quantity, on: :member
+  end
   root to: "products#index"
   get "support/:page", to: "support#show", as: :static_page
 

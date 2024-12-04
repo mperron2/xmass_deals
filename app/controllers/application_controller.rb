@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :initalize_session
-  helper_method :cart
+  helper_method :cart, :cart_quantity
   protect_from_forgery with: :exception
   before_action :update_allowed_parameters, if: :devise_controller?
 
@@ -12,10 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def initalize_session
-    session[:cart] ||= [] # Will contain a array of product_ids
+    session[:cart] ||= {} # Will contain a hash with product_id as key and quantity as value
   end
+
   def cart
-    Product.find(session[:cart])
+    session[:cart].map { |product_id, quantity| { product: Product.find(product_id), quantity: quantity } }
   end
 end
