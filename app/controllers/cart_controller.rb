@@ -12,21 +12,19 @@ class CartController < ApplicationController
   def destroy
     product_id = @product.id.to_s
     session[:cart].delete(product_id)
-
-    redirect_to root_path
+    redirect_to request.referer || root_path
   end
+
 
   def update_quantity
     product_id = params[:id]
     quantity = params[:quantity].to_i
     session[:cart][product_id] = quantity if quantity > 0
-
-    redirect_to root_path
+    redirect_to request.referer || root_path
   end
 
   private
 
-  # Define the get_product method
   def get_product
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
