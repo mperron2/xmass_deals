@@ -12,6 +12,6 @@ class Customer < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "id", "name", "postal_code", "street_address", "city", "created_at", "updated_at" ]
+    [ "id", "name", "email", "postal_code", "street_address", "city", "created_at", "updated_at", "reset_password_token", "province" ]
   end
 end

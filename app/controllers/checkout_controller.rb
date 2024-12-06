@@ -5,6 +5,7 @@ class CheckoutController < ApplicationController
   def index
     @cart_items = cart
     @total_price = calculate_total(@cart_items)
+    @orders = current_customer.orders.includes(:order_items, :products)
   end
 
   def confirm
