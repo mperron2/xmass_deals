@@ -67,7 +67,6 @@ ActiveAdmin.register Order do
     end
   end
 
-  # Filters
   filter :customer_name, as: :string
   filter :status, as: :string
   filter :created_at
