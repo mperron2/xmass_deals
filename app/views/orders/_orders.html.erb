@@ -1,0 +1,20 @@
+<div>
+  <% orders.each do |order| %>
+    <div>
+      <h2 class="subtitle is-4 has-text-black">Order #<%= order.id %> - <%= order.status %></h2>
+      <p class="has-text-black"><strong>Subtotal: </strong><%= number_to_currency(order.cost) %></p>
+      <p class="has-text-black"><strong>Tax: </strong><%= number_to_currency(order.cost * get_tax_rate(order.customer.province)) %></p>
+      <p class="has-text-black"><strong>Total: </strong><%= number_to_currency(order.cost + (order.cost * get_tax_rate(order.customer.province))) %></p>
+
+      <h3 class="subtitle is-5 has-text-black mt-3">Products:</h3>
+      <ul>
+        <% order.order_items.each do |item| %>
+          <li class="has-text-black">
+            <strong><%= item.product.name %></strong> - Quantity: <%= item.quantity %>
+          </li>
+        <% end %>
+      </ul>
+      <hr class="my-4">
+    </div>
+  <% end %>
+</div>
