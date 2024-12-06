@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_04_170952) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_06_162337) do
   create_table "about_us", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -118,7 +118,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_170952) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "price"
+    t.decimal "price", precision: 10, scale: 2
     t.integer "order_id", null: false
     t.integer "product_id", null: false
     t.datetime "created_at", null: false
@@ -128,11 +128,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_170952) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "cost"
+    t.decimal "cost", precision: 10, scale: 2
     t.string "status"
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 

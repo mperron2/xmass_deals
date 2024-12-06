@@ -1,22 +1,23 @@
 <div class="hero is-fullheight is-flex is-align-items-center is-justify-content-center">
   <div class="hero-body">
     <div class="container">
-      <div class="card">
-        <div class="card-content m-6">
+      <div class="card" style="width: 600px; padding: 30px;">
+        <div class="card-content" style="padding: 30px;">
           <h1 class="title is-3 has-text-centered">Order Confirmation</h1>
 
-          <h2 class="title is-4">Customer Information</h2>
+          <h2 class="title is-4 mt-4">Customer Information</h2>
           <p class="has-text-black"><strong>Street Address:</strong> <%= @customer.street_address %></p>
           <p class="has-text-black"><strong>City:</strong> <%= @customer.city %></p>
           <p class="has-text-black"><strong>Province:</strong> <%= @customer.province %></p>
           <p class="has-text-black"><strong>Postal Code:</strong> <%= @customer.postal_code %></p>
 
           <h2 class="title is-4 mt-4">Order Summary</h2>
+          <p class="has-text-weight-bold has-text-black">Quantity - Product</p>
           <% if @cart_items.present? %>
             <ul>
               <% @cart_items.each do |entry| %>
                 <li class="has-text-black">
-                  <%= entry[:product].name %> - Quantity: <%= entry[:quantity] %>
+                  <%= entry[:quantity] %> - <%= entry[:product].name %>
                 </li>
               <% end %>
             </ul>
@@ -27,8 +28,40 @@
           <h2 class="title is-4 mt-4">Subtotal: <%= number_to_currency(@total_price) %></h2>
           <h2 class="title is-4">Tax at <%= @province_tax_rate ? @province_tax_rate * 100 : "N/A" %>%: <%= number_to_currency(@tax) %></h2>
           <h2 class="title is-4">Total: <%= number_to_currency(@grand_total) %></h2>
+          <div id="paypal-button-container"></div>
+
+          <script src="https://www.paypal.com/sdk/js?client-id=AbxDmLNO6Vg0cRra_poBIDR0mwG5FcTJm86FMa_AdVtydfgQE4RTY9jdLlV_ye-u0025jFurtIy_4WXm&currency=CAD" onload="renderPayPalButtons()"></script>
+          <script>
+            function renderPayPalButtons() {
+              paypal.Buttons({
+                createOrder: function(data, actions) {
+                  return actions.order.create({
+                    purchase_units: [{
+                      amount: {
+                        value: '<%= number_with_precision(@grand_total, precision: 2) %>'
+                      }
+                    }]
+                  });
+                },
+                onApprove: function(data, actions) {
+                  return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    window.location.href = '<%= thank_you_checkout_path %>';
+                  });
+                },
+                onError: function(err) {
+                  console.error('An error occurred during the transaction:', err);
+                  alert('Something went wrong. Please try again.');
+                }
+              }).render('#paypal-button-container');
+            }
+            renderPayPalButtons();
+          </script>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :customers
   resources :customers
-  resources :orders
+  resources :orders, only: [ :index, :show ]
   resources :order_items
 
   resources :cart, only: [ :create, :destroy ] do
@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     get "confirm", on: :collection
   end
 
-  get "confirm", to: "checkout#confirm", as: "confirm"
   get "checkout", to: "checkout#index", as: "checkout"
+
+  get "checkout/thankyou", to: "checkout#thankyou", as: "thank_you_checkout"
+
 
   # Root path
   root to: "products#index"
