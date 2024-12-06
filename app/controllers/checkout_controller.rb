@@ -16,6 +16,34 @@ class CheckoutController < ApplicationController
     @grand_total = @total_price + @tax
   end
 
+  def paid
+    @customer = current_customer
+    @cart_items = cart
+    @total_price = calculate_total(@cart_items)
+
+    @order = Order.create(
+      customer: @customer,
+      status: "Completed",
+      cost: @total_price
+    )
+
+    @cart_items.each do |entry|
+      OrderItem.create(
+        order: @order,
+        product: entry[:product],
+        quantity: entry[:quantity],
+        price: entry[:product].price
+      )
+    end
+
+    session[:cart] = {}
+  end
+
+  def thankyou
+    paid
+    render "thankyou"
+  end
+
   private
 
   def set_customer

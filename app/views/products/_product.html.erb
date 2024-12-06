@@ -23,13 +23,13 @@
         <strong><%= product.price %>$</strong>
       </p>
       <% if session[:cart]&.key?(product.id.to_s) %>
-        <%= button_to cart_path(product), class: "button red-wine-button", method: :delete do %>
+        <%= button_to cart_path(product), class: "button red-wine-button", style: "width: 100%;", method: :delete do %>
           Remove from cart
         <% end %>
       <% else %>
         <%= form_with url: cart_index_path, method: :post, local: true do %>
           <%= hidden_field_tag :id, product.id %>
-          <%= button_tag "Add to cart", class: "button green-button" %>
+          <%= button_tag "Add to cart", class: "button green-button", style: "width: 100%;" %>
         <% end %>
       <% end %>
     </div>

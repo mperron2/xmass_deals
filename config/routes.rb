@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     get "confirm", on: :collection
   end
 
-  get "confirm", to: "checkout#confirm", as: "confirm"
   get "checkout", to: "checkout#index", as: "checkout"
+
+  get "checkout/thankyou", to: "checkout#thankyou", as: "thank_you_checkout"
+
 
   # Root path
   root to: "products#index"

@@ -1,0 +1,18 @@
+<div class="hero is-fullheight is-flex is-align-items-center is-justify-content-center">
+  <div class="hero-body">
+    <div class="container">
+      <div class="card" style="width: 600px; padding: 30px;">
+        <div class="card-content" style="padding: 30px;">
+          <h1 class="title is-3 has-text-centered">Thank You for Your Purchase!</h1>
+          <p class="has-text-centered has-text-black">Your order has been successfully placed. You will be redirected shortly.</p>
+          <script>
+            setTimeout(function() {
+              window.close();
+              window.location.href = "<%= root_path %>";
+            }, 10000);
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
