@@ -17,13 +17,14 @@ class CheckoutController < ApplicationController
   end
 
   def paid
-    @customer = current_customer
     @cart_items = cart
+    @customer = current_customer
     @total_price = calculate_total(@cart_items)
 
     @order = Order.create(
       customer: @customer,
-      status: "Completed",
+      status: "Paid",
+      payment: rand(1..1000000),
       cost: @total_price
     )
 

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :customers
   resources :customers
-  resources :orders
+  resources :orders, only: [ :index, :show ]
   resources :order_items
 
   resources :cart, only: [ :create, :destroy ] do

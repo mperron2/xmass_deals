@@ -71,6 +71,9 @@
                           <%= link_to "Sign In to Checkout", new_customer_session_path, class: "button is-warning" %>
                         <% end %>
                       </li>
+                      <li class="mt-3">
+                        <%= link_to "Go to Orders", orders_path, class: "button is-primary" %>
+                      </li>
                     <% else %>
                       <p>Your cart is empty.</p>
                     <% end %>

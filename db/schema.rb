@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_05_174425) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_06_162337) do
   create_table "about_us", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -133,6 +133,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_05_174425) do
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 

@@ -5,8 +5,7 @@ class CartController < ApplicationController
     product_id = @product.id.to_s
     session[:cart][product_id] ||= 0
     session[:cart][product_id] += 1
-
-    redirect_to root_path
+    redirect_to request.referer || root_path
   end
 
   def destroy
