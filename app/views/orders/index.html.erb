@@ -1,4 +1,28 @@
-<div class="container">
-  <%= render 'checkout/orders', orders: @orders, tax_rate: @tax_rate %>
-</div>
+<div class="hero is-fullheight is-flex is-align-items-center is-justify-content-center">
+  <div class="hero-body">
+    <div class="container">
+      <div class="card" style="width: 1000px; padding: 30px;">
+        <div class="card-content" style="padding: 30px;">
+          <h1 class="title is-2 has-text-centered">Your Orders</h1>
 
+          <% @orders.each do |order| %>
+            <div>
+              <h2 class="subtitle is-4 has-text-black">Order #<%= order.id %> - <%= order.status %></h2>
+              <p class="has-text-black"><strong>Total: </strong><%= number_to_currency(order.cost) %></p>
+
+              <h3 class="subtitle is-5 has-text-black mt-3">Products:</h3>
+              <ul>
+                <% order.order_items.each do |item| %>
+                  <li class="has-text-black">
+                    <strong><%= item.product.name %></strong> - Quantity: <%= item.quantity %>
+                  </li>
+                <% end %>
+              </ul>
+              <hr class="my-4">
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
